@@ -33,3 +33,11 @@ React HOC
         return status !== "LOGGED_IN" ? <WrappedComponent {...props} /> : null;
         };
       }
+
+Javascript        
+객체의 키값과 동일한 키의 값을 리턴해준다        
+        const policy = {
+          admin: { canInvite: true, canView: true },
+          viewer: { canInvite: false, canView: true },
+        }[user.role];
+
