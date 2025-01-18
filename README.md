@@ -36,8 +36,19 @@ React HOC
 
 Javascript        
 객체의 키값과 동일한 키의 값을 리턴해준다        
+
         const policy = {
           admin: { canInvite: true, canView: true },
           viewer: { canInvite: false, canView: true },
         }[user.role];
+
+
+즉시실행 함수 표현식        
+
+        const status = (() => {
+          if (A조건 && B조건) return "BOTH";
+          if (A조건) return "A";
+          if (B조건) return "B";
+          return "NONE";
+        })();
 
