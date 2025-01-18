@@ -11,25 +11,25 @@ new class e{constructor(){this.init()}init(){this.handleMouseUp=this.handleMouse
 
 React HOC
 
-function LoginStartPage() {
-  /* ... 로그인 관련 로직 ... */
-  return <>{/* ... 로그인 관련 컴포넌트 ... */}</>;
-}
+    function LoginStartPage() {
+      /* ... 로그인 관련 로직 ... */
+      return <>{/* ... 로그인 관련 컴포넌트 ... */}</>;
+    }
+    
+    export default withAuthGuard(LoginStartPage);
 
-export default withAuthGuard(LoginStartPage);
-
-// HOC 정의
-/* ... AuthGuard Paramter는 WrappedComonent Argument Props 이다 ... */
-function withAuthGuard(WrappedComponent) {
-  return function AuthGuard(props) {
-    const status = useCheckLoginStatus();
-
-    useEffect(() => {
-      if (status === "LOGGED_IN") {
-        location.href = "/home";
+      // HOC 정의
+        /* ... AuthGuard Paramter는 WrappedComonent Argument Props 이다 ... */
+        function withAuthGuard(WrappedComponent) {
+          return function AuthGuard(props) {
+            const status = useCheckLoginStatus();
+    
+        useEffect(() => {
+          if (status === "LOGGED_IN") {
+            location.href = "/home";
+          }
+        }, [status]);
+    
+        return status !== "LOGGED_IN" ? <WrappedComponent {...props} /> : null;
+        };
       }
-    }, [status]);
-
-    return status !== "LOGGED_IN" ? <WrappedComponent {...props} /> : null;
-  };
-}
